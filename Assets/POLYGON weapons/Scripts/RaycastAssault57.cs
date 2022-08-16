@@ -13,27 +13,34 @@ public class RaycastAssault57 : MonoBehaviour
 
     private Camera fpsCam;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
-    private AudioSource gunAudio;
+    private AudioSource reload;
+    private AudioSource shoot;
+    private ParticleSystem muzzleFlash;
     private LineRenderer laserLine;
     private float nextFire;
+    private bool allowedToFire = true;
 
 
     void Start()
     {
         laserLine = GetComponent<LineRenderer>();
 
-        gunAudio = GetComponent<AudioSource>();
+        reload = GameObject.Find("ReloadSound").GetComponent<AudioSource>();
+
+        shoot = GameObject.Find("ShootSound").GetComponent<AudioSource>();
+
+        muzzleFlash = GameObject.Find("MuzzleFlash").GetComponent<ParticleSystem>();
 
         fpsCam = GetComponentInParent<Camera>();
+
     }
 
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetButton("Fire1") && Time.time > nextFire && allowedToFire == true)
         {
             nextFire = Time.time + fireRate;
-
 
             if (ammo != 0)
             {
@@ -69,20 +76,37 @@ public class RaycastAssault57 : MonoBehaviour
             }
         }
 
+        muzzleFlash.Stop();
+
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ammo = 32;
+            StartCoroutine(ReloadEffect());
         }
     }
 
     private IEnumerator ShotEffect()
     {
-        gunAudio.Play();
+        shoot.Play();
+
+        muzzleFlash.Play();
 
         laserLine.enabled = true;
 
         yield return shotDuration;
 
         laserLine.enabled = false;
+    }
+
+    private IEnumerator ReloadEffect()
+    {
+        reload.Play();
+
+        allowedToFire = false;
+
+        yield return new WaitForSeconds(2.5f);
+
+        ammo = 32;
+
+        allowedToFire = true;
     }
 }
