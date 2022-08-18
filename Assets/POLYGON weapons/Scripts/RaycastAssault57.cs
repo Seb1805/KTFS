@@ -10,8 +10,8 @@ public class RaycastAssault57 : MonoBehaviour
     public float weaponRange = 50f;
     public float hitForce = 100f;
     public Transform gunEnd;
+    public Camera fpsCam;
 
-    private Camera fpsCam;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
     private AudioSource reload;
     private AudioSource shoot;
@@ -30,11 +30,7 @@ public class RaycastAssault57 : MonoBehaviour
         shoot = GameObject.Find("ShootSound").GetComponent<AudioSource>();
 
         muzzleFlash = GameObject.Find("MuzzleFlash").GetComponent<ParticleSystem>();
-
-        fpsCam = GetComponentInParent<Camera>();
-
     }
-
 
     void Update()
     {
@@ -76,6 +72,11 @@ public class RaycastAssault57 : MonoBehaviour
             }
         }
 
+        if (Input.GetButton("Fire1") == false)
+        {
+            muzzleFlash.Stop();
+        }
+
         muzzleFlash.Stop();
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -84,10 +85,10 @@ public class RaycastAssault57 : MonoBehaviour
         }
     }
 
+
     private IEnumerator ShotEffect()
     {
         shoot.Play();
-
         muzzleFlash.Play();
 
         laserLine.enabled = true;
@@ -97,16 +98,15 @@ public class RaycastAssault57 : MonoBehaviour
         laserLine.enabled = false;
     }
 
+
     private IEnumerator ReloadEffect()
     {
         reload.Play();
-
         allowedToFire = false;
 
         yield return new WaitForSeconds(2.5f);
 
         ammo = 32;
-
         allowedToFire = true;
     }
 }
