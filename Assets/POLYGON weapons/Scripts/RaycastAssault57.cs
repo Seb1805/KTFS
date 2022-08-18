@@ -81,7 +81,7 @@ public class RaycastAssault57 : MonoBehaviour
             muzzleFlash.Stop();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || ammo == 0)
         {
             StartCoroutine(ReloadEffect());
         }
