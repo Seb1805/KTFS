@@ -20,6 +20,8 @@ public class RaycastAssault57 : MonoBehaviour
     private float nextFire;
     private bool allowedToFire = true;
 
+    [SerializeField] private GameObject bulletHolePrefab;
+
 
     void Start()
     {
@@ -54,6 +56,8 @@ public class RaycastAssault57 : MonoBehaviour
                 {
                     laserLine.SetPosition(1, hit.point);
                     Enemy health = hit.collider.GetComponent<Enemy>();
+                    //WIP
+                    GameObject.Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
 
                     if (health != null)
                     {
