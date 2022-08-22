@@ -399,7 +399,7 @@ namespace StarterAssets
 
         private void Crouching()
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKeyUp(KeyCode.LeftControl))
             {
                 if (crouch == true)
                 {
