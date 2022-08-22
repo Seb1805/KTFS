@@ -56,7 +56,7 @@ public class RaycastAssault57 : MonoBehaviour
                 {
                     laserLine.SetPosition(1, hit.point);
                     Health health = hit.collider.GetComponent<Health>();
-
+                    GameObject.Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
 
                     if (health != null)
                     {
@@ -66,11 +66,6 @@ public class RaycastAssault57 : MonoBehaviour
                     if (hit.rigidbody != null)
                     {
                         hit.rigidbody.AddForce(-hit.normal * hitForce);
-                        GameObject.Instantiate(bulletHole, hit.rigidbody.position, Quaternion.LookRotation(hit.normal), hit.transform);
-                    }
-                    else
-                    {
-                        GameObject.Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
                     }
                 }
                 else
