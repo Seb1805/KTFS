@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class RaycastAssault57 : MonoBehaviour
 {
@@ -19,8 +20,7 @@ public class RaycastAssault57 : MonoBehaviour
     private LineRenderer laserLine;
     private float nextFire;
     private bool allowedToFire = true;
-
-    [SerializeField] private GameObject bulletHolePrefab;
+    [SerializeField] private GameObject bulletHole;
 
 
     void Start()
@@ -36,7 +36,7 @@ public class RaycastAssault57 : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire && allowedToFire == true)
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextFire && allowedToFire == true)
         {
             nextFire = Time.time + fireRate;
 
@@ -56,8 +56,7 @@ public class RaycastAssault57 : MonoBehaviour
                 {
                     laserLine.SetPosition(1, hit.point);
                     Enemy health = hit.collider.GetComponent<Enemy>();
-                    //WIP
-                    GameObject.Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    GameObject.Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
 
                     if (health != null)
                     {
@@ -76,11 +75,11 @@ public class RaycastAssault57 : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire1") == false)
+        if (Input.GetKey(KeyCode.Mouse0) == false)
         {
             muzzleFlash.Stop();
         }
-        if (Input.GetButton("Fire1") && ammo == 0)
+        if (Input.GetKey(KeyCode.Mouse0) && ammo == 0)
         {
             muzzleFlash.Stop();
         }
