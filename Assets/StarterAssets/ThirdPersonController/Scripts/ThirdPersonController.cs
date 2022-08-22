@@ -97,6 +97,7 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _animIDCrouch;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -109,6 +110,8 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+
+        private bool crouch = false;
 
         private bool IsCurrentDeviceMouse
         {
@@ -159,6 +162,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Crouching();
         }
 
         private void LateUpdate()
@@ -173,6 +177,7 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDCrouch = Animator.StringToHash("Crouch");
         }
 
         private void GroundedCheck()
@@ -386,6 +391,33 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        private void Crouching()
+        {
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                if (crouch == true)
+                {
+                    crouch = false;
+                    _animator.SetBool(_animIDCrouch, false);
+                    JumpHeight = 1.2f;
+                    SprintSpeed = 5.335f;
+                    MoveSpeed = 2.0f;
+                    _controller.height = 2f;
+                    _controller.center = new Vector3(0f, 1f, 0f);
+                }
+                else
+                {
+                    crouch = true;
+                    _animator.SetBool(_animIDCrouch, true);
+                    JumpHeight = 0f;
+                    SprintSpeed = 2f;
+                    MoveSpeed = 1.5f;
+                    _controller.height = 1f;
+                    _controller.center = new Vector3(0f, 0.5f, 0f);
+                }
             }
         }
     }
