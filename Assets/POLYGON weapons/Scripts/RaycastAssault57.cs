@@ -5,7 +5,7 @@ using StarterAssets;
 
 public class RaycastAssault57 : MonoBehaviour
 {
-    public int gunDamage = 1;
+    public int gunDamage = 23;
     public int ammo = 32;
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
@@ -82,6 +82,7 @@ public class RaycastAssault57 : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && ammo == 0)
         {
             muzzleFlash.Stop();
+            StartCoroutine(ReloadEffect());
         }
 
         if (Input.GetKeyDown(KeyCode.R) || ammo == 0)

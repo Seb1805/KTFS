@@ -428,7 +428,9 @@ namespace StarterAssets
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                _animator.SetTrigger("Reload");
+                //_animator.SetTrigger("Reload");
+
+                _animator.SetTrigger("Dead");
             }
         }
     }

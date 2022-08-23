@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public Text healtText;
-
-    float health, maxHealt = 100;
+    public Text healthText;
+    float health, maxHealth = 100;
+    private Animator _animator;
 
     private void Start()
     {
-        health = maxHealt;
+        health = maxHealth;
     }
 
     private void Update()
     {
-        healtText.text = "HP: " + health + "%";
+        healthText.text = "HP: " + health + "%";
     }
 
     public void Damage(int damageAmount)
@@ -25,13 +25,14 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            _animator.SetTrigger("Dead");
         }
     }
 
+
     private void ColorChanger()
     {
-        Color healthColor = Color.Lerp(Color.red, Color.green, (health / maxHealt));
-        healtText.color = healthColor;
+        Color healthColor = Color.Lerp(Color.red, Color.green, (health / maxHealth));
+        healthText.color = healthColor;
     }
 }
