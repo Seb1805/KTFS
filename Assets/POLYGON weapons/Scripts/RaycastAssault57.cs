@@ -55,7 +55,7 @@ public class RaycastAssault57 : MonoBehaviour
                 if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
                 {
                     laserLine.SetPosition(1, hit.point);
-                    Health health = hit.collider.GetComponent<Health>();
+                    E_Health health = hit.collider.GetComponent<E_Health>();
                     GameObject.Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
 
                     if (health != null)
