@@ -10,6 +10,7 @@ public class ThirdperonShooterController : MonoBehaviour
     [SerializeField] private float normalSensitivity;
     [SerializeField] private float aimSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] private Transform debugTransform;
 
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
@@ -31,6 +32,7 @@ public class ThirdperonShooterController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
         {
             mouseWorldPosition = raycastHit.point;
+            debugTransform.position = raycastHit.point;
         }
 
         if (starterAssetsInputs.aim)
