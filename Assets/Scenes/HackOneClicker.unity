@@ -287,7 +287,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 270610898}
+      - m_Target: {fileID: 270610900}
         m_TargetAssemblyTypeName: Manager, Assembly-CSharp
         m_MethodName: AddClicks
         m_Mode: 1
@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270610899}
-  - component: {fileID: 270610898}
+  - component: {fileID: 270610900}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -667,20 +667,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &270610898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270610897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4742b5bf95a91439ace76c479b9dd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClicksTotalText: {fileID: 70073491}
-  TotalClicks: 0
 --- !u!4 &270610899
 Transform:
   m_ObjectHideFlags: 0
@@ -696,6 +682,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &270610900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270610897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4742b5bf95a91439ace76c479b9dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClicksTotalText: {fileID: 70073491}
 --- !u!1 &318357780
 GameObject:
   m_ObjectHideFlags: 0
