@@ -31,19 +31,19 @@ public class ManagerCB : MonoBehaviour
         int guessDigit3 = (guessNumber / 1) % 10;
 
         if (guessDigit1 == RandomDigit1) bulls++;
-        else if (guessDigit1 == guessDigit2) cows++;
-        else if (guessDigit1 == guessDigit3) cows++;
+        else if (guessDigit1 == RandomDigit2) cows++;
+        else if (guessDigit1 == RandomDigit3) cows++;
 
         if (guessDigit2 == RandomDigit2) bulls++;
-        else if (guessDigit2 == guessDigit1) cows++;
-        else if (guessDigit2 == guessDigit3) cows++;
+        else if (guessDigit2 == RandomDigit1) cows++;
+        else if (guessDigit2 == RandomDigit3) cows++;
 
         if (guessDigit3 == RandomDigit3) bulls++;
-        else if (guessDigit3 == guessDigit1) cows++;
-        else if (guessDigit3 == guessDigit2) cows++;
+        else if (guessDigit3 == RandomDigit1) cows++;
+        else if (guessDigit3 == RandomDigit2) cows++;
 
 
-        GameInstruction.text += " Bulls: " + bulls + " Cows: " + cows;
+        GameInstruction.text += guessNumber + " Bulls: " + bulls + " Cows: " + cows;
         
         // Den nedenunder skal bruges når vi skal åbne denne scene
         //SceneManger.LoadScene("HackTwoCB", LoadSceneMode.Additive)
