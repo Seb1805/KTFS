@@ -10,20 +10,17 @@ public class ManagerCB : MonoBehaviour
     int cows;
     public Text GameInstruction;
     public GameObject inputField;
+    int randomNumber = 0; 
 
     public void CheckNumber()
     {
-        
-        int randomNumber = 678; //skal have et random nummer
-        
+        if (randomNumber == 0) randomNumber = Random.Range(100, 999);
+
         int RandomDigit1 = (randomNumber / 100) % 10;
         int RandomDigit2 = (randomNumber / 10) % 10;
         int RandomDigit3 = (randomNumber / 1) % 10;
-
-        //string brr = inputField.GetComponent<InputField>().text;
         int.TryParse(inputField.GetComponent<InputField>().text, out guessNumber);
 
-        //int.TryParse(inputField.GetComponent<Text>().text, out guessNumber); // input value
         bulls = 0;
         cows = 0;
         int guessDigit1 = (guessNumber / 100) % 10;
