@@ -43,7 +43,7 @@ public class ManagerCB : MonoBehaviour
         else if (guessDigit3 == RandomDigit2) cows++;
 
 
-        GameInstruction.text += guessNumber + " Bulls: " + bulls + " Cows: " + cows;
+        GameInstruction.text += guessNumber + " Bulls: " + bulls + " Cows: " + cows + " ";
         
         // Den nedenunder skal bruges når vi skal åbne denne scene
         //SceneManger.LoadScene("HackTwoCB", LoadSceneMode.Additive)
