@@ -48,25 +48,49 @@ public class NetworkTest : MonoBehaviour
         StartCoroutine(SimplePostRequest());
     }
 
+    [Obsolete]
     IEnumerator SimplePostRequest()
     {
-        WWWForm wwwF = new WWWForm();
 
-        wwwF.AddField("name", "Wirk");
-        wwwF.AddField("score", 10923);
+        WWWForm form = new WWWForm();
+        form.AddField("name", "test data");
+        form.AddField("score", 0);
 
-        UnityWebRequest www = UnityWebRequest.Post(url, wwwF);
-
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
+        using (UnityWebRequest request = UnityWebRequest.Post(url, form))
         {
-            Debug.Log($"POST: failed");
-        }
-        else
-        {
-            Debug.Log($"Success POST");
-        }
+            yield return request.SendWebRequest();
 
+            if (request.isNetworkError || request.isHttpError)
+            {
+                Debug.Log($"POST: failed");
+            }
+            else
+            {
+                Debug.Log($"Success POST");
+            }
+            //if (request.isNetworkError || request.isHttpError)
+            //    //outputArea.text = request.error;
+            //else
+            //outputArea.text = request.downloadHandler.text;
+        }
+        //WWWForm wwwF = new WWWForm();
+
+        //wwwF.AddField("name", "Wirk");
+        //wwwF.AddField("score", 10923);
+
+        //UnityWebRequest www = UnityWebRequest.Post(url, wwwF);
+
+        //yield return www.SendWebRequest();
+
+        //if (www.isNetworkError || www.isHttpError)
+        //{
+        //    Debug.Log($"POST: failed");
+        //}
+        //else
+        //{
+        //    Debug.Log($"Success POST");
+        //}
     }
+
+
 }

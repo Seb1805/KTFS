@@ -1,0 +1,7 @@
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.csproj.AssemblyReference.cache
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.AssemblyInfoInputs.cache
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.AssemblyInfo.cs
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.csproj.CoreCompileInputs.cache
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sebas\source\repos\KTFS\KTFSWebservice\obj\Debug\net6.0\KTFSWebservice.MvcApplicationPartsAssemblyInfo.cache
