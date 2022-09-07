@@ -1,6 +1,8 @@
+using MongoDB.Bson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -11,6 +13,7 @@ public class NetworkTest : MonoBehaviour
     public string url;
     Button getbutton;
     Button postbutton;
+    public GameObject HighscoreRow;
 
     void Start()
     {
@@ -28,18 +31,43 @@ public class NetworkTest : MonoBehaviour
 
     IEnumerator SimpleGetRequest()
     {
-        UnityWebRequest www = new UnityWebRequest(url);
 
-        yield return www.SendWebRequest();
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        {
+            yield return request.SendWebRequest();
 
-        if(www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log($"GET: failed");
+            if (request.isNetworkError || request.isHttpError)
+            {
+                Debug.Log($"GET: failed");
+            }
+            else
+            {
+                Debug.Log($"Success GET ");
+                Debug.Log($"{request.downloadHandler.text}");
+                var leaderboardScores = JsonUtility.FromJson<List<PlayerScore>>(request.downloadHandler.text);
+                foreach (var item in leaderboardScores)
+                {
+                    Debug.Log(item);
+                }
+
+
+            }
         }
-        else
-        {
-            Debug.Log($"Success Get");
-        }
+
+
+
+        //UnityWebRequest www = new UnityWebRequest(url);
+
+        //yield return www.SendWebRequest();
+
+        //if(www.isNetworkError || www.isHttpError)
+        //{
+        //    Debug.Log($"GET: failed");
+        //}
+        //else
+        //{
+        //    Debug.Log($"Success Get: {www.downloadHandler}");
+        //}
 
     }
 
@@ -66,31 +94,20 @@ public class NetworkTest : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Success POST");
+                Debug.Log($"Success POST ");
+                
             }
-            //if (request.isNetworkError || request.isHttpError)
-            //    //outputArea.text = request.error;
-            //else
-            //outputArea.text = request.downloadHandler.text;
         }
-        //WWWForm wwwF = new WWWForm();
-
-        //wwwF.AddField("name", "Wirk");
-        //wwwF.AddField("score", 10923);
-
-        //UnityWebRequest www = UnityWebRequest.Post(url, wwwF);
-
-        //yield return www.SendWebRequest();
-
-        //if (www.isNetworkError || www.isHttpError)
-        //{
-        //    Debug.Log($"POST: failed");
-        //}
-        //else
-        //{
-        //    Debug.Log($"Success POST");
-        //}
+        
     }
 
-
+    [Serializable]
+    public class PlayerScore
+    {
+        public ObjectId id;
+        public int Score;
+        public string Name;
+        public DateTime DateCreated;
+        public DateTime DateUpdated;
+    }
 }
