@@ -9,11 +9,19 @@ public class ManagerMN : MonoBehaviour
     public Text GameInstruction;
     public GameObject inputField;
     int randomNumber = 0;
+    int txtConter = 0;
 
     public void CheckNumber()
     {
+        txtConter++;
         if (randomNumber == 0) randomNumber = Random.Range(0, 999);
-        Debug.Log("wAA AWAA" + randomNumber);
+        Debug.Log(randomNumber);
+
+        if (txtConter == 10)
+        {
+            GameInstruction.text = "";
+            txtConter = 0;
+        }
 
         int.TryParse(inputField.GetComponent<InputField>().text, out guessNumber);
 
