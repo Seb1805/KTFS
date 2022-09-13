@@ -12,7 +12,6 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.LogError(other.gameObject.name);
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (other.gameObject.transform.GetComponent<Interactable>())
