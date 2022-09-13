@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public Health health;
+    public AiHealth health;
+
+    public void OnRaycastHit(RaycastLaserRifle weapon)
+    {
+        health.TakeDamage(weapon.gunDamage);
+    }
 
     //public void OnRaycastHit(Raycastweapon weapon)
     //{

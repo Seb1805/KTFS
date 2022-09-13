@@ -54,12 +54,15 @@ public class RaycastLaserRifle : MonoBehaviour
                 if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
                 {
                     laserLine.SetPosition(1, hit.point);
-                    E_Health health = hit.collider.GetComponent<E_Health>();
 
-                    if (health != null)
+                    //EXPERIMENTAL!!!!!!!!!!!!!!!!!!!!!!!!
+                    Hitbox hitbox = hit.collider.GetComponent<Hitbox>();
+
+                    if (hitbox != null)
                     {
-                        health.Damage(gunDamage);
+                        hitbox.OnRaycastHit(this);
                     }
+                    //EXPERIMENTAL!!!!!!!!!!!!!!!!!!!!!!!!
 
                     if (hit.rigidbody != null)
                     {
