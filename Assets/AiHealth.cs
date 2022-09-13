@@ -40,6 +40,8 @@ public class AiHealth : MonoBehaviour
     //TODO: Make interface
     public void TakeDamage(float dmg)
     {
+
+        //https://www.youtube.com/watch?v=oLT4k-lrnwg&list=PLyBYG1JGBcd009lc1ZfX9ZN5oVUW7AFVy&index=7 look at tutorial if we wanna apply force to the ragdool
         currentHealth -= dmg;
         healthBar.SetHealthPercentage(currentHealth / maxHealth);
         if (currentHealth <= 0.0f)
