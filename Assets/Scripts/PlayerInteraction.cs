@@ -8,23 +8,17 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) Debug.LogError("shiit");
 
     }
-
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.LogError("Heyo");
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.LogError("E Pressed");
-            if (collision.gameObject.transform.GetComponent<Interactable>())
+            if (other.gameObject.transform.GetComponent<Interactable>())
             {
-                Debug.LogError("Object responding?");
-                collision.gameObject.transform.GetComponent<Interactable>().Interact();
+                other.gameObject.transform.GetComponent<Interactable>().Interact(gameObject);
                 return;
             }
         }
     }
-
 }

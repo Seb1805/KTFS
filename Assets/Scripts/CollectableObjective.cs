@@ -5,14 +5,10 @@ using UnityEngine;
 public class CollectableObjective : Interactable
 {
     ObjectiveController controller;
-    public override void Interact()
+    public override void Interact(GameObject player)
     {
-        Debug.LogError($"Objective : {controller.objective}");
-
         controller.objective = true;
-        Debug.LogError($"Objective : {controller.objective}");
-        Destroy(gameObject);
-
+        PickedUp(player);
     }
 
     // Start is called before the first frame update
