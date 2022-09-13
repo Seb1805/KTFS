@@ -7,7 +7,7 @@ public class CollectableObjective : Interactable
     ObjectiveController controller;
     public override void Interact(GameObject player)
     {
-        controller.objective = true;
+        controller.ObjectiveCheck(gameObject);
         PickedUp(player);
     }
 
