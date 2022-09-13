@@ -16,11 +16,13 @@ public class RespawnScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<int> list = objs2.to
-        foreach (GameObject obj in objs)
-        {
-            list.Add(obj);
-        }
+        List<GameObject> list = new List<GameObject>(objs);
+        ////List<GameObject> list1 = objs.ToList();
+        ////List<int> list = objs2.ToList();
+        //foreach (GameObject obj in objs)
+        //{
+        //    list.Add(obj);
+        //}
     }
 
     // Update is called once per frame
