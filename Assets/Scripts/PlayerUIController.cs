@@ -25,7 +25,7 @@ public class PlayerUIController : MonoBehaviour
 
     }
 
-    void DamageTaken(float damage)
+    public void DamageTaken(float damage)
     {
         health -= damage;
         healthBar.value = health;

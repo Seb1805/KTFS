@@ -19,7 +19,8 @@ public class ObjectiveController : MonoBehaviour
         {
             if (obj.name == objective.name)
             {
-                
+                objectives.Remove(obj);
+                return;
             }
         }
     }
