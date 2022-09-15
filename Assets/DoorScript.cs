@@ -13,6 +13,7 @@ public class DoorScript : MonoBehaviour
     public Transform doorBody; //Door body Transform
 
     bool open = false;
+    static bool locked = true;
 
     Vector3 defaultDoorPosition;
     Vector3 currentDoorPosition;
@@ -57,7 +58,7 @@ public class DoorScript : MonoBehaviour
     // Activate the Main function when Player enter the trigger area
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !locked)
         {
             open = true;
             currentDoorPosition = doorBody.localPosition;
@@ -68,11 +69,17 @@ public class DoorScript : MonoBehaviour
     // Deactivate the Main function when Player exit the trigger area
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !locked)
         {
             open = false;
             currentDoorPosition = doorBody.localPosition;
             openTime = 0;
         }
+    }
+
+    public static void UnlockDoor()
+    {
+        locked = false;
+        Debug.LogError(locked);
     }
 }

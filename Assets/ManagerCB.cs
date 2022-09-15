@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ManagerCB : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ManagerCB : MonoBehaviour
     public void CheckNumber()
     {
         if (randomNumber == 0) randomNumber = Random.Range(100, 999);
+        Debug.LogError(randomNumber);
 
         int RandomDigit1 = (randomNumber / 100) % 10;
         int RandomDigit2 = (randomNumber / 10) % 10;
@@ -41,6 +43,14 @@ public class ManagerCB : MonoBehaviour
 
 
         GameInstruction.text += guessNumber + " Bulls: " + bulls + " Cows: " + cows + " ";
+
+        if(bulls == 3)
+        {
+            DoorScript.UnlockDoor();
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            SceneManager.UnloadSceneAsync("HackTwoCB");
+        }
         
         // Den nedenunder skal bruges når vi skal åbne denne scene
         //SceneManger.LoadScene("HackTwoCB", LoadSceneMode.Additive)
