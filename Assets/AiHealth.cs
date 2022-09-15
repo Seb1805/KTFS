@@ -6,9 +6,11 @@ using UnityEngine;
 public class AiHealth : MonoBehaviour
 {
     public float maxHealth;
+    
     [HideInInspector]
     public float currentHealth;
 
+    AiAgent agent;
     Ragdoll ragdoll;
 
     public float blinkIntensity;
@@ -23,6 +25,7 @@ public class AiHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<AiAgent>();
         ragdoll = GetComponent<Ragdoll>();
         currentHealth = maxHealth;
         healthBar = GetComponentInChildren<UiHealthBar>();
@@ -38,7 +41,7 @@ public class AiHealth : MonoBehaviour
 
 
     //TODO: Make interface
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, Vector3 direction)
     {
 
         //https://www.youtube.com/watch?v=oLT4k-lrnwg&list=PLyBYG1JGBcd009lc1ZfX9ZN5oVUW7AFVy&index=7 look at tutorial if we wanna apply force to the ragdool
@@ -46,19 +49,20 @@ public class AiHealth : MonoBehaviour
         healthBar.SetHealthPercentage(currentHealth / maxHealth);
         if (currentHealth <= 0.0f)
         {
-            Die();
+            Die(direction);
         }
 
         blinkTimer = blinkDuration;
     }
 
-    private void Die()
+    private void Die(Vector3 direction)
     {
-        ragdoll.ActivateRagdoll();
-        AiBaseScript ai = GetComponentInParent<AiBaseScript>();
+        AiDeathState deathState = agent.stateMachine.GetState(AiStateId.Death) as AiDeathState;
+        deathState.direction = direction;
+        agent.stateMachine.ChangeState(AiStateId.Death);
         //TODO: Handle correctly
-        ai.isDead = true;
-        healthBar.gameObject.SetActive(false);
+        //AiBaseScript ai = GetComponentInParent<AiBaseScript>();
+        //ai.isDead = true;
 
     }
 

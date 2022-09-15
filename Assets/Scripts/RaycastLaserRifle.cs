@@ -46,7 +46,7 @@ public class RaycastLaserRifle : MonoBehaviour
                 StartCoroutine(ShotEffect());
 
                 Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-
+                //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 laserLine.SetPosition(0, gunEnd.position);
@@ -60,7 +60,7 @@ public class RaycastLaserRifle : MonoBehaviour
 
                     if (hitbox != null)
                     {
-                        hitbox.OnRaycastHit(this);
+                        hitbox.OnRaycastHit(this, hit.normal);
                     }
                     //EXPERIMENTAL!!!!!!!!!!!!!!!!!!!!!!!!
 
