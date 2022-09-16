@@ -13,15 +13,15 @@ public class PlayerUIController : MonoBehaviour
     Slider healthBar;
 
     // Timer
+    bool startTimer = false;
     float timeDuration = 2f * 60f;
     float time;
+    int clockSpeed = 1;
     int minutes = 0;
-    bool startTimer = false;
 
     // UI elements
     public GameObject interactMessage;
     public GameObject timerUIHolder;
-    public GameObject timerUI;
     TextMeshProUGUI timerMinutes;
     TextMeshProUGUI timerSeconds;
 
@@ -35,40 +35,12 @@ public class PlayerUIController : MonoBehaviour
         healthBar.value = maxHealth;
 
         time = timeDuration;
-        timerUIHolder = GameObject.Find("TimerArea");
-        timerUI = GameObject.Find("Timer");
-        timerMinutes = timerUI.transform.Find("Minutes").GetComponent<TextMeshProUGUI>();
-        timerSeconds = timerUI.transform.Find("Seconds").GetComponent<TextMeshProUGUI>();
+        
     }
 
     void Update()
     {
-        if (startTimer)
-        {
-            time = time - Time.deltaTime *2;
-            if (time > 60f)
-            {
-                minutes = (int)time / 60;
-                timerMinutes.text = $"{minutes}";
-            }
-            else
-            {
-                timerMinutes.text = $"0";
-            }
-
-            int sec = (int)time % 60;
-            if (sec >= 10)
-            {
-                timerSeconds.text = $"{sec}";
-            } else
-            {
-                timerSeconds.text = $"0{sec}";
-            }
-
-
-        }
-
-
+        Countdown();
     }
 
     public void DamageTaken(float damage)
@@ -90,7 +62,37 @@ public class PlayerUIController : MonoBehaviour
     public void StartCountdownTimer()
     {
         timerUIHolder.SetActive(true);
+        timerMinutes = GameObject.Find("Minutes").GetComponent<TextMeshProUGUI>();
+        timerSeconds = GameObject.Find("Seconds").GetComponent<TextMeshProUGUI>();
         startTimer = true;
     }
 
+    void Countdown()
+    {
+        if (startTimer)
+        {
+            time = time - Time.deltaTime * clockSpeed;
+            if (time > 60f)
+            {
+                minutes = (int)time / 60;
+                timerMinutes.text = $"{minutes}";
+            }
+            else
+            {
+                timerMinutes.text = $"0";
+            }
+
+            int sec = (int)time % 60;
+            if (sec >= 10)
+            {
+                timerSeconds.text = $"{sec}";
+            }
+            else
+            {
+                timerSeconds.text = $"0{sec}";
+            }
+        }
+
+        if (time < 0) startTimer = false;
+    }
 }
