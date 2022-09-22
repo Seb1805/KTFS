@@ -5,16 +5,12 @@ using UnityEngine.AI;
 
 public class AiPlayerChaseState : AiState
 {
-    public Transform playerPos;
     float timer = 0.0f;
 
 
     public void Enter(AiAgent agent)
     {
-        if (playerPos == null)
-        {
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+
     }
 
     public void Exit(AiAgent agent)
@@ -35,15 +31,20 @@ public class AiPlayerChaseState : AiState
 
         //Calc the path every second
         timer -= Time.deltaTime;
+        if (!agent.navMeshAgent.hasPath)
+        {
+            agent.navMeshAgent.destination = agent.playerTransform.position;
+        }
+
         if (timer < 0.0f)
         {
-            Vector3 direction = (playerPos.position - agent.navMeshAgent.destination);
+            Vector3 direction = (agent.playerTransform.position - agent.navMeshAgent.destination);
             direction.y = 0;
             if (direction.sqrMagnitude > agent.agentConfig.maxDistance * agent.agentConfig.maxDistance)
             {
                 if (agent.navMeshAgent.pathStatus != NavMeshPathStatus.PathPartial)
                 {
-                    agent.navMeshAgent.destination = playerPos.position;
+                    agent.navMeshAgent.destination = agent.playerTransform.position;
                 }
             }
 
