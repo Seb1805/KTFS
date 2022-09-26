@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
@@ -22,8 +23,7 @@ public class PlayerUIController : MonoBehaviour
     // UI elements
     public GameObject interactMessage;
     public GameObject timerUIHolder;
-    TextMeshProUGUI timerMinutes;
-    TextMeshProUGUI timerSeconds;
+    public GameObject overallTimer;
 
 
     // Start is called before the first frame update
@@ -35,7 +35,10 @@ public class PlayerUIController : MonoBehaviour
         healthBar.value = maxHealth;
 
         time = timeDuration;
-        
+
+        interactMessage.SetActive(false);
+        timerUIHolder.SetActive(false);
+
     }
 
     void Update()
@@ -62,8 +65,7 @@ public class PlayerUIController : MonoBehaviour
     public void StartCountdownTimer()
     {
         timerUIHolder.SetActive(true);
-        timerMinutes = GameObject.Find("Minutes").GetComponent<TextMeshProUGUI>();
-        timerSeconds = GameObject.Find("Seconds").GetComponent<TextMeshProUGUI>();
+        overallTimer = GameObject.Find("OverallTimer");
         startTimer = true;
     }
 
@@ -72,25 +74,8 @@ public class PlayerUIController : MonoBehaviour
         if (startTimer)
         {
             time = time - Time.deltaTime * clockSpeed;
-            if (time > 60f)
-            {
-                minutes = (int)time / 60;
-                timerMinutes.text = $"{minutes}";
-            }
-            else
-            {
-                timerMinutes.text = $"0";
-            }
 
-            int sec = (int)time % 60;
-            if (sec >= 10)
-            {
-                timerSeconds.text = $"{sec}";
-            }
-            else
-            {
-                timerSeconds.text = $"0{sec}";
-            }
+            overallTimer.GetComponent<TextMeshProUGUI>().text = TimeSpan.FromSeconds(time).ToString("m\\:ss");
         }
 
         if (time < 0) startTimer = false;
