@@ -18,12 +18,13 @@ public class PlayerUIController : MonoBehaviour
     float timeDuration = 2f * 60f;
     float time;
     int clockSpeed = 1;
-    int minutes = 0;
 
     // UI elements
     public GameObject interactMessage;
     public GameObject timerUIHolder;
     public GameObject overallTimer;
+
+    LevelChangerController levelChange;
 
 
     // Start is called before the first frame update
@@ -39,17 +40,27 @@ public class PlayerUIController : MonoBehaviour
         interactMessage.SetActive(false);
         timerUIHolder.SetActive(false);
 
+        levelChange = GameObject.Find("LevelChanger").GetComponent<LevelChangerController>();
+
     }
 
     void Update()
     {
         Countdown();
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            DamageTaken(20);
+        }
     }
 
     public void DamageTaken(float damage)
     {
         health -= damage;
         healthBar.value = health;
+        if(health <= 0)
+        {
+            levelChange.PlayerLose("TestEndScene", "You're trash, git gut");
+        }
     }
 
     public void OpenInteraction()
