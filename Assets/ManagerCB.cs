@@ -46,7 +46,9 @@ public class ManagerCB : MonoBehaviour
 
         if(bulls == 3)
         {
-            DoorScript.UnlockDoor();
+            SaveDataBetweenScenes savedata = GameObject.Find("DataBetweenScenes").GetComponent<SaveDataBetweenScenes>();
+            savedata.door.GetComponent<DoorScript>().UnlockDoor();
+            //DoorScript.UnlockDoor();
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             SceneManager.UnloadSceneAsync("HackTwoCB");

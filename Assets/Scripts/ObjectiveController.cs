@@ -60,8 +60,8 @@ public class ObjectiveController : MonoBehaviour
 
     public void RedButtonPressed()
     {
-        GameObject.Find("ObjectiveRedButton").SetActive(false);
-        GameObject.Find("ObjectiveProtectShip").SetActive(true);
+        //GameObject.Find("ObjectiveRedButton").SetActive(false);
+        //GameObject.Find("ObjectiveProtectShip").SetActive(true);
         defendShip = true;
         ship.GetComponent<BoxCollider>().enabled = !ship.GetComponent<BoxCollider>().enabled;
     }
