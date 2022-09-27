@@ -59,7 +59,7 @@ public class PlayerUIController : MonoBehaviour
         healthBar.value = health;
         if(health <= 0)
         {
-            levelChange.PlayerLose("TestEndScene", "You're trash, git gut");
+            levelChange.PlayerLose("TestEndScene", "You're trash, git gud");
         }
     }
 

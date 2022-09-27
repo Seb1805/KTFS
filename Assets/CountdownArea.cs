@@ -49,6 +49,8 @@ public class CountdownArea : MonoBehaviour
                 // Some sort of feedback; sound, light, a change, UI element
                 generalTimerAreaUI.SetActive(false);
                 completed = true;
+                ObjectiveController objectiveController = GameObject.Find("MissionController").GetComponent<ObjectiveController>();
+                objectiveController.ProtectShip();
             }
 
         }

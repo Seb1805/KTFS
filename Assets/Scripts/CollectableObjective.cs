@@ -7,14 +7,15 @@ public class CollectableObjective : Interactable
     ObjectiveController controller;
     public override void Interact(GameObject player)
     {
-        controller.ObjectiveCheck(gameObject);
+        controller = GameObject.Find("MissionController").GetComponent<ObjectiveController>();
+        controller.PickUpObjectiveCheck(gameObject);
         PickedUp(player);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        controller = GameObject.Find("GameController").GetComponent<ObjectiveController>();
+        
     }
 
 }

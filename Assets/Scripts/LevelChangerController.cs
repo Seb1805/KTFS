@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class LevelChangerController : MonoBehaviour
 
     string sceneToLoad = "";
     [HideInInspector] public string reason = "";
+    [HideInInspector] public float score;
 
     public static LevelChangerController instance;
 
@@ -16,14 +18,15 @@ public class LevelChangerController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void PlayerWon()
+    public void PlayerWon(string sceneName, float timeUsed)
     {
+        score = timeUsed;
+        sceneToLoad = sceneName;
         animator.SetTrigger("FadeOut");
     }
 
     public void PlayerLose(string sceneName, string cause)
     {
-        
         reason = cause;
         sceneToLoad = sceneName;
         animator.SetTrigger("FadeOut");
