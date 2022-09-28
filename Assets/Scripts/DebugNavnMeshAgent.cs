@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class DebugNavnMeshAgent : MonoBehaviour
 {
-    NavMeshAgent agent;
+    private NavMeshAgent agent;
+    
 
     public bool velocity;
     public bool desiredVelocity;
@@ -14,7 +15,7 @@ public class DebugNavnMeshAgent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = gameObject.GetComponent<NavMeshAgent>();
     }
 
     private void OnDrawGizmos()

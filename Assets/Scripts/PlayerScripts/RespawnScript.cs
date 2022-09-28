@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RespawnScript : MonoBehaviour
 {
@@ -9,10 +10,19 @@ public class RespawnScript : MonoBehaviour
     [SerializeField] private Transform playerPos;
     [SerializeField] private GameObject deathScreen;
 
+
+    GameObject[] objs = { null, null, null };
+    int[] objs2 = { 1, 2, 3 };
     // Start is called before the first frame update
     void Start()
     {
-        
+        List<GameObject> list = new List<GameObject>(objs);
+        ////List<GameObject> list1 = objs.ToList();
+        ////List<int> list = objs2.ToList();
+        //foreach (GameObject obj in objs)
+        //{
+        //    list.Add(obj);
+        //}
     }
 
     // Update is called once per frame
