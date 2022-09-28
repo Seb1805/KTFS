@@ -16,7 +16,7 @@ public class AiDeathState : AiState
 
     public void Exit(AiAgent agent)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public AiStateId GetId()
@@ -26,7 +26,7 @@ public class AiDeathState : AiState
 
     public void Update(AiAgent agent)
     {
-        throw new System.NotImplementedException();
+
     }
 
     // Start is called before the first frame update
