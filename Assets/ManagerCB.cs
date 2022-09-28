@@ -52,6 +52,7 @@ public class ManagerCB : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             SceneManager.UnloadSceneAsync("HackTwoCB");
+            Debug.LogError("Done did it");
         }
         
         // Den nedenunder skal bruges når vi skal åbne denne scene
