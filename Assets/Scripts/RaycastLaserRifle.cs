@@ -60,7 +60,7 @@ public class RaycastLaserRifle : MonoBehaviour
 
                     if (hitbox != null)
                     {
-                        hitbox.OnRaycastHit(this, hit.normal);
+                        //hitbox.OnRaycastHit(this, hit.normal);
                     }
                     //EXPERIMENTAL!!!!!!!!!!!!!!!!!!!!!!!!
 

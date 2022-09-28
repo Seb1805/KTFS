@@ -33,7 +33,7 @@ public class CharacterAiming : MonoBehaviour
         else
         {
             aimLayer.weight -= Time.deltaTime / aimDuration;
-
+            weapon.StopFiring();
         }
 
         //Only make muzzle flash and shoot when we are AIMING!
