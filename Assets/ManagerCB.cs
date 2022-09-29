@@ -16,7 +16,7 @@ public class ManagerCB : MonoBehaviour
     public void CheckNumber()
     {
         if (randomNumber == 0) randomNumber = Random.Range(100, 999);
-        Debug.LogError(randomNumber);
+        //Debug.LogError(randomNumber);
 
         int RandomDigit1 = (randomNumber / 100) % 10;
         int RandomDigit2 = (randomNumber / 10) % 10;

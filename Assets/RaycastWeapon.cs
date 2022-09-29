@@ -34,6 +34,13 @@ public class RaycastWeapon : MonoBehaviour
     List<Bullet> bullets = new List<Bullet>();
     float maxLifeTime = 3.0f;
 
+    private AudioSource shootSound;
+
+    void Start()
+    {
+        shootSound = GameObject.Find("ShootSound").GetComponent<AudioSource>();
+    }
+
     Vector3 GetPosition(Bullet bullet)
     {
         // p + v*t + 0.5*g*t*t
@@ -139,7 +146,7 @@ public class RaycastWeapon : MonoBehaviour
     private void FireBullet()
     {
         muzzleFlash.Emit(1);
-
+        shootSound.Play();
         //Maybe needed to hande Unity Bug
         //foreach(var particle in muzzleFlash)
         //{
