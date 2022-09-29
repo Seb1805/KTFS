@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SaveDataBetweenScenes : MonoBehaviour
 {
-    public GameObject door;
+    [HideInInspector] public GameObject door;
+
 
     //save the object between the scenes
     public static SaveDataBetweenScenes instance;

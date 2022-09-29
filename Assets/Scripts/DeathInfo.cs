@@ -9,7 +9,20 @@ public class DeathInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        reasonOfDeath = gameObject.transform.Find("DeathText").GetComponent<TextMeshProUGUI>();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        if (LevelChangerController.instance.completed)
+        {
+            GameObject.Find("Death").SetActive(false);
+        }
+        else
+        {
+            GameObject.Find("Win").SetActive(false);
+            GameObject.Find("NetworkController").SetActive(false);
+            reasonOfDeath = GameObject.Find("DeathText").GetComponent<TextMeshProUGUI>();
+            reasonOfDeath.text = LevelChangerController.instance.reason;
+
+        }
 
     }
 
@@ -17,7 +30,7 @@ public class DeathInfo : MonoBehaviour
     void Update()
     {
 
-        reasonOfDeath.text = LevelChangerController.instance.reason;
+        
         //reasonOfDeath.text = "this is a test template text";
 
     }

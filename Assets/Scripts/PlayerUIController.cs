@@ -50,6 +50,9 @@ public class PlayerUIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             DamageTaken(20);
+        } else if (Input.GetKeyDown(KeyCode.U))
+        {
+            levelChange.PlayerWon("TestEndScene", true, 30);
         }
     }
 
@@ -59,7 +62,7 @@ public class PlayerUIController : MonoBehaviour
         healthBar.value = health;
         if(health <= 0)
         {
-            levelChange.PlayerLose("TestEndScene", "You're trash, git gud");
+            levelChange.PlayerLose("TestEndScene", false, "You're trash, git gud");
         }
     }
 
