@@ -9,13 +9,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class NetworkTest : MonoBehaviour
+public class NetworkScript : MonoBehaviour
 {
     Button postbutton;
     GameObject table;
 
     GameObject leaderboard;
     GameObject posting;
+    GameObject onlineScore;
     GameObject offlineScore;
     GameObject serverConnectionMessage;
     GameObject loading;
@@ -36,12 +37,14 @@ public class NetworkTest : MonoBehaviour
 
         leaderboard = GameObject.Find("Leaderboard");
         posting = GameObject.Find("postArea");
+        onlineScore = GameObject.Find("OnlineYourScore");
         offlineScore = GameObject.Find("OfflineScoreText");
         serverConnectionMessage = GameObject.Find("ServerConnectionText");
         loading = GameObject.Find("Loading");
 
         leaderboard.SetActive(false);
         posting.SetActive(false);
+        onlineScore.SetActive(false);
         offlineScore.SetActive(false);
         serverConnectionMessage.SetActive(false);
 
@@ -73,7 +76,7 @@ public class NetworkTest : MonoBehaviour
                 loading.SetActive(false);
                 serverConnectionMessage.SetActive(true);
                 offlineScore.SetActive(true);
-                offlineScore.GetComponent<TextMeshProUGUI>().text = $"Your score: {TimeSpan.FromSeconds((int)LevelChangerController.instance.score).ToString("mm\\:ss")}";
+                offlineScore.GetComponent<TextMeshProUGUI>().text = $"You completed the game in: {TimeSpan.FromSeconds((int)LevelChangerController.instance.score).ToString("mm\\:ss")}";
 
                 yield break;
 
@@ -82,8 +85,10 @@ public class NetworkTest : MonoBehaviour
             {
                 loading.SetActive(false);
                 Debug.Log($"Success GET ");
-                //Debug.Log($"{request.downloadHandler.text}");
-                
+
+                onlineScore.SetActive(true);
+                onlineScore.GetComponent<TextMeshProUGUI>().text = $"You completed the game in: {TimeSpan.FromSeconds((int)LevelChangerController.instance.score).ToString("mm\\:ss")}";
+
                 List<PlayerData> leaderboardScores = JsonConvert.DeserializeObject<List<PlayerData>>(request.downloadHandler.text).OrderBy(x => x.score).ToList();
             
                 foreach(Transform item in table.transform)
@@ -91,8 +96,8 @@ public class NetworkTest : MonoBehaviour
                     Destroy(item.gameObject);
                 }
 
-                
-                if(LevelChangerController.instance.score < leaderboardScores[bestOfTheBest - 1].score && allowPosting)
+
+                if (LevelChangerController.instance.score < leaderboardScores[bestOfTheBest - 1].score && allowPosting)
                 {
                     leaderboard.SetActive(false);
                     posting.SetActive(true);
