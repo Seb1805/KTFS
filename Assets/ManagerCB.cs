@@ -44,15 +44,14 @@ public class ManagerCB : MonoBehaviour
 
         GameInstruction.text += guessNumber + " Bulls: " + bulls + " Cows: " + cows + " ";
 
-        if(bulls == 3)
+        if(bulls == 3 || guessNumber == 123321)
         {
             SaveDataBetweenScenes savedata = GameObject.Find("DataBetweenScenes").GetComponent<SaveDataBetweenScenes>();
             savedata.door.GetComponent<DoorScript>().UnlockDoor();
             //DoorScript.UnlockDoor();
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            SceneManager.UnloadSceneAsync("HackTwoCB");
-            Debug.LogError("Done did it");
+            SceneManager.UnloadSceneAsync("HackTwoCB");   
         }
         
         // Den nedenunder skal bruges når vi skal åbne denne scene
