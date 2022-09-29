@@ -1365,6 +1365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: https://localhost:7037/api/highscore
+  HighscoreRow: {fileID: 0}
 --- !u!4 &1552318846
 Transform:
   m_ObjectHideFlags: 0

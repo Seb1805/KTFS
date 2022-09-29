@@ -1,7 +1,8 @@
-using MongoDB.Bson;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using TMPro;
 using UnityEngine;
@@ -43,8 +44,10 @@ public class NetworkTest : MonoBehaviour
             else
             {
                 Debug.Log($"Success GET ");
-                Debug.Log($"{request.downloadHandler.text}");
-                var leaderboardScores = JsonUtility.FromJson<List<PlayerScore>>(request.downloadHandler.text);
+                //Debug.Log($"{request.downloadHandler.text}");
+                
+                List<PlayerData> leaderboardScores = JsonConvert.DeserializeObject<List<PlayerData>>(request.downloadHandler.text);
+            
                 foreach (var item in leaderboardScores)
                 {
                     Debug.Log(item);
@@ -99,15 +102,5 @@ public class NetworkTest : MonoBehaviour
             }
         }
         
-    }
-
-    [Serializable]
-    public class PlayerScore
-    {
-        public ObjectId id;
-        public int Score;
-        public string Name;
-        public DateTime DateCreated;
-        public DateTime DateUpdated;
     }
 }
