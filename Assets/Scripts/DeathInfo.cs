@@ -6,8 +6,8 @@ using UnityEngine;
 public class DeathInfo : MonoBehaviour
 {
     TextMeshProUGUI reasonOfDeath;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -23,15 +23,6 @@ public class DeathInfo : MonoBehaviour
             reasonOfDeath.text = LevelChangerController.instance.reason;
 
         }
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-        //reasonOfDeath.text = "this is a test template text";
-
-    }
 }

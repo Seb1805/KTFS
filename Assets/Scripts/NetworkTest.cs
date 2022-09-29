@@ -16,6 +16,9 @@ public class NetworkTest : MonoBehaviour
 
     GameObject leaderboard;
     GameObject posting;
+    GameObject offlineScore;
+    GameObject serverConnectionMessage;
+    GameObject loading;
 
     public string url;
     public GameObject HighscoreRow;
@@ -25,19 +28,29 @@ public class NetworkTest : MonoBehaviour
     bool allowPosting = true;
     string tempInput;
 
-    void Start()
+    private void Awake()
     {
         table = GameObject.Find("Table");
 
-        //getbutton = GameObject.Find("GetButton").GetComponent<Button>();
         postbutton = GameObject.Find("PostButton").GetComponent<Button>();
 
         leaderboard = GameObject.Find("Leaderboard");
         posting = GameObject.Find("postArea");
-        //getbutton.onClick.AddListener(OnButtonGetScore);
-        //postbutton.onClick.AddListener(OnButtonPostScore);
+        offlineScore = GameObject.Find("OfflineScoreText");
+        serverConnectionMessage = GameObject.Find("ServerConnectionText");
+        loading = GameObject.Find("Loading");
 
-        StartCoroutine(SimpleGetRequest());
+        leaderboard.SetActive(false);
+        posting.SetActive(false);
+        offlineScore.SetActive(false);
+        serverConnectionMessage.SetActive(false);
+
+       
+            StartCoroutine(SimpleGetRequest());
+        
+    }
+    void Start()
+    {
 
     }
 
@@ -56,9 +69,18 @@ public class NetworkTest : MonoBehaviour
             if (request.isNetworkError || request.isHttpError)
             {
                 Debug.Log($"GET: failed");
+
+                loading.SetActive(false);
+                serverConnectionMessage.SetActive(true);
+                offlineScore.SetActive(true);
+                offlineScore.GetComponent<TextMeshProUGUI>().text = $"Your score: {TimeSpan.FromSeconds((int)LevelChangerController.instance.score).ToString("mm\\:ss")}";
+
+                yield break;
+
             }
             else
             {
+                loading.SetActive(false);
                 Debug.Log($"Success GET ");
                 //Debug.Log($"{request.downloadHandler.text}");
                 
@@ -96,7 +118,7 @@ public class NetworkTest : MonoBehaviour
 
                         playerPlaceDisplay.text = $"{i + 1}";
                         playerNameDisplay.text = leaderboardScores[i].name;
-                        playerScoreDisplay.text = TimeSpan.FromSeconds(leaderboardScores[i].score).ToString("m\\:ss");
+                        playerScoreDisplay.text = TimeSpan.FromSeconds(leaderboardScores[i].score).ToString("mm\\:ss");
 
 
                         

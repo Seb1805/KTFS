@@ -16,6 +16,7 @@ public class EndSceneButtons : MonoBehaviour
 
     void SceneChange()
     {
+
         Destroy(GameObject.Find("LevelChanger"));
         Destroy(GameObject.Find("DataBetweenScenes"));
         SceneManager.LoadScene(changeToScene);
