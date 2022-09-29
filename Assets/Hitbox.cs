@@ -6,7 +6,7 @@ public class Hitbox : MonoBehaviour
 {
     public AiHealth health;
 
-    public void OnRaycastHit(RaycastLaserRifle weapon,Vector3 direction)
+    public void OnRaycastHit(RaycastWeapon weapon,Vector3 direction)
     {
         health.TakeDamage(weapon.gunDamage, direction);
     }

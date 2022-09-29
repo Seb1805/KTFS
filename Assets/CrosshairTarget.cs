@@ -19,7 +19,6 @@ public class CrosshairTarget : MonoBehaviour
     {
         ray.origin = mainCam.transform.position;
         ray.direction = mainCam.transform.forward;
-
         if (Physics.Raycast(ray, out hitInfo))
         {
             transform.position = hitInfo.point;

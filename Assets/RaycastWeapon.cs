@@ -20,8 +20,10 @@ public class RaycastWeapon : MonoBehaviour
     public int fireRate = 25;
     public float bulletSpeed = 1000.0f;
     public float bulletDrop = 300.0f;
+    public float gunDamage = 10.0f;
     public ParticleSystem hitEffect;
     public TrailRenderer trailRenderer;
+    public AnimationClip weaponAnimation;
     public Transform raycastOrigin;
     public Transform raycastDestination;
 
@@ -112,6 +114,21 @@ public class RaycastWeapon : MonoBehaviour
 
             bullet.tracer.transform.position = hitInfo.point;
             bullet.time = maxLifeTime;
+
+
+            //Collision impulse
+            var rb = hitInfo.collider.GetComponent<Rigidbody>();
+            if (rb)
+            {
+                rb.AddForceAtPosition(ray.direction * 20, hitInfo.point, ForceMode.Impulse);
+            }
+
+            var hitBox = hitInfo.collider.GetComponent<Hitbox>();
+            if (hitBox)
+            {
+                hitBox.OnRaycastHit(this, ray.direction);
+            }
+
         }
         else
         {
