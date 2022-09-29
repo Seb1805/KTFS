@@ -7,7 +7,8 @@ public class MeshSockets : MonoBehaviour
 {
     public enum SocketId
     {
-        Spine
+        Spine,
+        RightHand
     }
 
     Dictionary<SocketId,MeshSocket> socketMap = new Dictionary<SocketId, MeshSocket>();

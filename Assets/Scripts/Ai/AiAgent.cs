@@ -16,6 +16,9 @@ public class AiAgent : MonoBehaviour
     public Transform playerTransform;
     public AiWeapons weapons;
 
+    //Test to change between weapon and base layer when chaning states
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,8 @@ public class AiAgent : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         weapons = GetComponent<AiWeapons>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        animator = GetComponent<Animator>();
 
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiPlayerChaseState());

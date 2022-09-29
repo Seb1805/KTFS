@@ -17,7 +17,7 @@ public class AiWeapons : MonoBehaviour
     {
         currentWeapon = weapon;
         sockets.Attach(weapon.transform, MeshSockets.SocketId.Spine);
-        currentWeapon.transform.SetParent(transform,false);
+        //currentWeapon.transform.SetParent(transform,false);
     }
 
     public void ActivateWeapon()
@@ -25,8 +25,27 @@ public class AiWeapons : MonoBehaviour
         animator.SetBool("Equip", true);
     }
 
+    public void DropWeapon()
+    {
+        if (currentWeapon)
+        {
+            currentWeapon.transform.SetParent(null);
+            currentWeapon.gameObject.GetComponent<BoxCollider>().enabled = true;
+            currentWeapon.gameObject.AddComponent<Rigidbody>();
+
+        }
+    }
+
     public bool HasWeapon()
     {
         return currentWeapon != null;
+    }
+
+    public void OnAnimationEvent(string eventName)
+    {
+        if (eventName == "equipWeapon")
+        {
+            sockets.Attach(currentWeapon.transform, MeshSockets.SocketId.RightHand);
+        }
     }
 }

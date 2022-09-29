@@ -27,6 +27,7 @@ public class AiFindWeaponState : AiState
         if (agent.weapons.HasWeapon())
         {
             agent.weapons.ActivateWeapon();
+            agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
         }
     }
 

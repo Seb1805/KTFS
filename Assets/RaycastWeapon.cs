@@ -108,7 +108,6 @@ public class RaycastWeapon : MonoBehaviour
         Vector3 direction = end - start;
         float distance = direction.magnitude;
         ray.origin = start;
-        //Normalisez so we cant take the magnitude
         ray.direction = direction;
         if (Physics.Raycast(ray, out hitInfo))
         {

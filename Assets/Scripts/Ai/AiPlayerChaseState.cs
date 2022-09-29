@@ -10,7 +10,7 @@ public class AiPlayerChaseState : AiState
 
     public void Enter(AiAgent agent)
     {
-
+        agent.animator.SetLayerWeight(1, 0.0f);
     }
 
     public void Exit(AiAgent agent)
