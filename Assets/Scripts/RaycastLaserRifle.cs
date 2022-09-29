@@ -46,7 +46,7 @@ public class RaycastLaserRifle : MonoBehaviour
                 StartCoroutine(ShotEffect());
 
                 Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
-
+                //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 laserLine.SetPosition(0, gunEnd.position);
@@ -54,12 +54,15 @@ public class RaycastLaserRifle : MonoBehaviour
                 if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
                 {
                     laserLine.SetPosition(1, hit.point);
-                    E_Health health = hit.collider.GetComponent<E_Health>();
 
-                    if (health != null)
+                    //EXPERIMENTAL!!!!!!!!!!!!!!!!!!!!!!!!
+                    Hitbox hitbox = hit.collider.GetComponent<Hitbox>();
+
+                    if (hitbox != null)
                     {
-                        health.Damage(gunDamage);
+                        hitbox.OnRaycastHit(this, hit.normal);
                     }
+                    //EXPERIMENTAL!!!!!!!!!!!!!!!!!!!!!!!!
 
                     if (hit.rigidbody != null)
                     {
