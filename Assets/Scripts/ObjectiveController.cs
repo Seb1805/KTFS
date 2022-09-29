@@ -51,7 +51,7 @@ public class ObjectiveController : MonoBehaviour
                 if (numberOfCollected == objectivesComplete.Count())
                 {
                     redButton = true;
-                    GameObject.Find("ObjectiveRedButton").SetActive(true);
+                    //GameObject.Find("BigRedButton").SetActive(true);
                 }
                 return;
             }

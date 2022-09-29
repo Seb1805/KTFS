@@ -19,8 +19,6 @@ public class DoorScript : MonoBehaviour
     Vector3 currentDoorPosition;
     float openTime = 0;
 
-    bool finalDoor = ObjectiveController.redButton;
-
     void Start()
     {
         if (doorBody)
@@ -62,7 +60,7 @@ public class DoorScript : MonoBehaviour
     {
         //Hvilket id den her dør har
         // if (idlocked = false)
-        if (other.CompareTag("Player") && !locked || finalDoor)
+        if (other.CompareTag("Player") && !locked || ObjectiveController.redButton)
         {
             open = true;
             currentDoorPosition = doorBody.localPosition;
@@ -73,7 +71,7 @@ public class DoorScript : MonoBehaviour
     // Deactivate the Main function when Player exit the trigger area
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && !locked || finalDoor)
+        if (other.CompareTag("Player") && !locked || ObjectiveController.redButton)
         {
             open = false;
             currentDoorPosition = doorBody.localPosition;
