@@ -18,10 +18,8 @@ public class ObjectiveController : MonoBehaviour
     LevelChangerController levelChange;
 
     GameObject objectivesUI;
-    
 
-
-    private void Start()
+    private void Awake()
     {
         objectives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Objectives"));
         foreach (GameObject obj in objectives)
@@ -31,6 +29,18 @@ public class ObjectiveController : MonoBehaviour
         objectivesUI = GameObject.Find("ObjectiveBody");
         timer = GameObject.Find("TimeKeeper").GetComponent<Timekeep>();
         levelChange = GameObject.Find("LevelChanger").GetComponent<LevelChangerController>();
+    }
+
+    private void Start()
+    {
+        //objectives = new List<GameObject>(GameObject.FindGameObjectsWithTag("Objectives"));
+        //foreach (GameObject obj in objectives)
+        //{
+        //    objectivesComplete.Add(false);
+        //}
+        //objectivesUI = GameObject.Find("ObjectiveBody");
+        //timer = GameObject.Find("TimeKeeper").GetComponent<Timekeep>();
+        //levelChange = GameObject.Find("LevelChanger").GetComponent<LevelChangerController>();
     }
 
     private void Update()
