@@ -10,7 +10,7 @@ public class ObjectiveController : MonoBehaviour
     private List<GameObject> objectives;
     private List<bool> objectivesComplete = new List<bool>();
 
-    bool redButton = false;
+    public static bool redButton = false;
     bool defendShip = false;
     
     public GameObject ship;
