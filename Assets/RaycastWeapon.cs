@@ -23,6 +23,7 @@ public class RaycastWeapon : MonoBehaviour
     public float gunDamage = 10.0f;
     public ParticleSystem hitEffect;
     public TrailRenderer trailRenderer;
+    public AnimationClip weaponAnimation;
     public Transform raycastOrigin;
     public Transform raycastDestination;
 

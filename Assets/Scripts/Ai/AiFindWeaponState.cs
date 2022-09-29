@@ -24,19 +24,22 @@ public class AiFindWeaponState : AiState
 
     public void Update(AiAgent agent)
     {
-
+        if (agent.weapons.HasWeapon())
+        {
+            agent.weapons.ActivateWeapon();
+        }
     }
 
 
     private WeaponPickup FindClosestWeapon(AiAgent agent)
     {
-        WeaponPickup[] weapons = Object.FindObjectOfType<WeaponPickup>();
+        WeaponPickup[] weapons = Object.FindObjectsOfType<WeaponPickup>();
         WeaponPickup closestWeapon = null;
         float cloestDistance = float.MaxValue;
-        foreach(var weapon in weapons)
+        foreach (var weapon in weapons)
         {
-            float distanceToWeapon = Vector3.Distance(agent.transform.position, weapon.transform.postion);
-            if(distanceToWeapon < cloestDistance)
+            float distanceToWeapon = Vector3.Distance(agent.transform.position, weapon.transform.position);
+            if (distanceToWeapon < cloestDistance)
             {
                 cloestDistance = distanceToWeapon;
                 closestWeapon = weapon;

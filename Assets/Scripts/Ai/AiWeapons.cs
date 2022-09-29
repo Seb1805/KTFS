@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class AiWeapons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    RaycastWeapon currentWeapon;
+    Animator animator;
+    MeshSockets sockets;
+
+    private void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        sockets = GetComponent<MeshSockets>();
+    }
+    public void Equip(RaycastWeapon weapon)
+    {
+        currentWeapon = weapon;
+        sockets.Attach(weapon.transform, MeshSockets.SocketId.Spine);
+        currentWeapon.transform.SetParent(transform,false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ActivateWeapon()
     {
-        
+        animator.SetBool("Equip", true);
+    }
+
+    public bool HasWeapon()
+    {
+        return currentWeapon != null;
     }
 }

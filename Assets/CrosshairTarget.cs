@@ -19,7 +19,13 @@ public class CrosshairTarget : MonoBehaviour
     {
         ray.origin = mainCam.transform.position;
         ray.direction = mainCam.transform.forward;
-        Physics.Raycast(ray, out hitInfo);
-        transform.position = hitInfo.point;
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            transform.position = hitInfo.point;
+        }
+        else
+        {
+            transform.position = ray.origin + ray.direction * 1000.0f;
+        }
     }
 }
