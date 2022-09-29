@@ -40,7 +40,7 @@ public class ThirdperonShooterController : MonoBehaviour
             aimVirtualCamera.gameObject.SetActive(true);
             thirdPersonController.SetSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 20f));
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(0), 1f, Time.deltaTime * 20f));
 
             Vector3 worldAimTarget = mouseWorldPosition;
             worldAimTarget.y = transform.position.y;
@@ -53,7 +53,7 @@ public class ThirdperonShooterController : MonoBehaviour
             aimVirtualCamera.gameObject.SetActive(false);
             thirdPersonController.SetSensitivity(normalSensitivity);
             thirdPersonController.SetRotateOnMove(true);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 20f));
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(0), 1f, Time.deltaTime * 20f));
         }
     }
 }

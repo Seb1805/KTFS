@@ -35,6 +35,6 @@ public abstract class Interactable : MonoBehaviour
     public void PickedUp(GameObject player)
     {
         player.GetComponentInParent<PlayerUIController>().CloseInteraction();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

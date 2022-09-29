@@ -6,6 +6,7 @@ public class SaveDataBetweenScenes : MonoBehaviour
 {
     [HideInInspector] public GameObject door;
 
+
     //save the object between the scenes
     public static SaveDataBetweenScenes instance;
 

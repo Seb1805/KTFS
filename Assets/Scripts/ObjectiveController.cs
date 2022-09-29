@@ -44,6 +44,7 @@ public class ObjectiveController : MonoBehaviour
     {
         foreach (GameObject obj in objectives)
         {
+            Debug.LogError(obj.name);
             if (obj.name == objective.name)
             {
                 objectivesComplete[objectives.IndexOf(obj)] = true;
@@ -69,7 +70,7 @@ public class ObjectiveController : MonoBehaviour
     public void ProtectShip()
     {
         timer.Pause();
-        levelChange.PlayerWon("TestEndScene", timer.getTime());
+        levelChange.PlayerWon("TestEndScene", true, timer.getTime());
     }
 
     void UpdateQuestLog()
