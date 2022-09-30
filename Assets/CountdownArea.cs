@@ -9,7 +9,7 @@ using UnityEngine;
 public class CountdownArea : MonoBehaviour
 {
     public bool saveTimer = false;
-    public float timeInSeconds = 1f;
+    public float timeInSeconds = 20;
 
     float clockSpeed = 1f;
     float countdownTimer;
@@ -23,7 +23,7 @@ public class CountdownArea : MonoBehaviour
     void Start()
     {
         //CountdownTimer = TimeInSeconds;
-        countdownTimer = 12;
+        countdownTimer = 30;
 
         countdownTimerUI = generalTimerAreaUI.transform.Find("GeneralTimerText").GetComponent<TextMeshProUGUI>();
 
